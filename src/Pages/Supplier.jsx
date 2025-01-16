@@ -20,11 +20,7 @@ import {
   TextField,
   Tooltip,
   TablePagination,
-  Radio,
-  RadioGroup,
   FormControlLabel,
-  FormControl,
-  FormLabel,
   Switch,
 } from '@mui/material';
 import MoreVertIcon from '@mui/icons-material/MoreVert';
@@ -35,9 +31,11 @@ import EmailIcon from '@mui/icons-material/Email';
 import AccountBalanceWalletIcon from '@mui/icons-material/AccountBalanceWallet';
 import LocationOnIcon from '@mui/icons-material/LocationOn';
 import PictureAsPdfIcon from '@mui/icons-material/PictureAsPdf';
-import WarningIcon from '@mui/icons-material/Warning';
 import ArrowUpwardIcon from '@mui/icons-material/ArrowUpward';
 import ArrowDownwardIcon from '@mui/icons-material/ArrowDownward';
+import MessageIcon from '@mui/icons-material/Message';
+import WhatsAppIcon from '@mui/icons-material/WhatsApp';
+import AlarmIcon from '@mui/icons-material/Alarm';
 
 const Supplier = () => {
   const [selectedSupplier, setSelectedSupplier] = useState(null);
@@ -77,6 +75,13 @@ const Supplier = () => {
     },
     // Add more suppliers as needed
   ];
+
+  // Encode the message for use in a URL
+  const encodedMessage = encodeURIComponent('Hello From Abhishek to you!!');
+  const phoneNumber = '8839705239';
+  // WhatsApp URL format: https://wa.me/<phone_number>?text=<message>
+  // const whatsappLink = `https://wa.me/${phoneNumber}?text=${encodedMessage}`;
+  const whatsappLink = `https://web.whatsapp.com/send?phone=${phoneNumber}&text=${encodedMessage}`;
 
   // Dummy transaction data for suppliers
   const [transactions, setTransactions] = useState([
@@ -290,9 +295,45 @@ const Supplier = () => {
         <Box
           sx={{ mb: 3, border: '1px solid #ddd', p: 2, borderRadius: '4px' }}
         >
-          <Typography variant="h6" sx={{ mb: 2 }}>
-            {selectedSupplier ? selectedSupplier.name : 'Select a supplier'}
-          </Typography>
+          <Box
+            sx={{
+              display: 'flex',
+              alignItems: 'center',
+              justifyContent: 'space-between',
+              mb: 3,
+            }}
+          >
+            <Typography variant="h6">
+              {selectedSupplier ? selectedSupplier.name : 'Select a supplier'}
+            </Typography>
+
+            {/* Icons for actions */}
+            <Box display="flex" alignItems="center">
+              <Tooltip title="Send Payment Reminder SMS to party" arrow>
+                <IconButton>
+                  <MessageIcon fontSize="medium" sx={{ color: '#eb8f0e' }} />
+                </IconButton>
+              </Tooltip>
+              <Tooltip title="Send Payment Reminder WhatsApp to party" arrow>
+                <IconButton>
+                  <WhatsAppIcon
+                    fontSize="medium"
+                    sx={{ color: '#06bd06' }}
+                    onClick={() => window.open(whatsappLink, '_blank')}
+                  />
+                </IconButton>
+              </Tooltip>
+              <IconButton title="Send Email">
+                <EmailIcon color="primary" />
+              </IconButton>
+              <Tooltip title="Set Reminder" arrow>
+                <IconButton>
+                  <AlarmIcon fontSize="medium" sx={{ color: '#e3280b' }} />
+                </IconButton>
+              </Tooltip>
+            </Box>
+          </Box>
+
           {selectedSupplier ? (
             <Box display="flex" justifyContent="space-between">
               {/* Left Section */}

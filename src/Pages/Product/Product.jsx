@@ -344,7 +344,6 @@ const Product = () => {
           />
         </TableContainer>
       </Box>
-
       {/* Action Menu */}
       <Menu
         anchorEl={anchorEl}

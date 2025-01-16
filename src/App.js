@@ -2,7 +2,7 @@ import { BrowserRouter, Routes, Route } from 'react-router';
 import { Box, Divider } from '@mui/material';
 
 import Home from './Pages/Home';
-import Product from './Pages/Product';
+import Product from './Pages/Product/Product';
 import Supplier from './Pages/Supplier';
 import Category from './Pages/Category';
 import Sidenav from './components/Sidebar/Sidenav';
