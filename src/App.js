@@ -8,6 +8,7 @@ import Category from './Pages/Category';
 import Sidenav from './components/Sidebar/Sidenav';
 import './App.css';
 import Breadcrum from './components/Breadcrums/Breadcrum';
+import ProductDashboard from './Pages/Product/ProductDashboard';
 
 function App() {
   return (
@@ -24,7 +25,7 @@ function App() {
               <Route path="/" exact element={<Home />} />
               <Route path="/home" exact element={<Home />} />
               <Route path="/product" exact element={<Product />} />
-              <Route path="/product/add" exact element={<Product />} />
+              <Route path="/product/add" exact element={<ProductDashboard />} />
               <Route path="/product/edit" exact element={<Product />} />
               <Route path="/product/delete" exact element={<Product />} />
               <Route path="/supplier" exact element={<Supplier />} />
