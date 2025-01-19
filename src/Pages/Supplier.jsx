@@ -43,7 +43,6 @@ const Supplier = () => {
   const [searchMode, setSearchMode] = useState(false);
   const [searchText, setSearchText] = useState('');
   const [transactionSearch, setTransactionSearch] = useState('');
-  const [selectedMenuSupplier, setSelectedMenuSupplier] = useState(null);
   const [sortConfig, setSortConfig] = useState({ key: '', direction: 'asc' });
   const [page, setPage] = useState(0);
   const [rowsPerPage, setRowsPerPage] = useState(5);
@@ -151,12 +150,10 @@ const Supplier = () => {
 
   const handleMenuClick = (event, supplier) => {
     setAnchorEl(event.currentTarget);
-    setSelectedMenuSupplier(supplier);
   };
 
   const handleMenuClose = () => {
     setAnchorEl(null);
-    setSelectedMenuSupplier(null);
   };
 
   const handleSearchMode = () => {

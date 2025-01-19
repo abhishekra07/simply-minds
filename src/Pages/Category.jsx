@@ -29,8 +29,7 @@ const Category = () => {
   const [anchorEl, setAnchorEl] = useState(null);
   const [searchMode, setSearchMode] = useState(false);
   const [searchText, setSearchText] = useState('');
-  const [searchItemsText, setSearchItemsText] = useState('');
-  const [selectedMenuCategory, setSelectedMenuCategory] = useState(null);
+  const [searchItemsText] = useState('');
   const [order, setOrder] = useState('asc');
   const [orderBy, setOrderBy] = useState('name');
   const [transactionSearch, setTransactionSearch] = useState('');
@@ -102,12 +101,10 @@ const Category = () => {
 
   const handleMenuClick = (event, category) => {
     setAnchorEl(event.currentTarget);
-    setSelectedMenuCategory(category);
   };
 
   const handleMenuClose = () => {
     setAnchorEl(null);
-    setSelectedMenuCategory(null);
   };
 
   const handleSearchMode = () => {
@@ -121,10 +118,6 @@ const Category = () => {
 
   const handleTransactionSearch = (event) => {
     setTransactionSearch(event.target.value);
-  };
-
-  const handleSearchItemsChange = (e) => {
-    setSearchItemsText(e.target.value);
   };
 
   return (

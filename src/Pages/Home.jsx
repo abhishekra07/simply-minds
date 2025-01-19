@@ -8,7 +8,6 @@ import {
 } from '@mui/icons-material';
 import MetricCard from '../components/Card/MetricCard';
 import RecentOrders from './RecentOrders';
-import Breadcrum from '../components/Breadcrums/Breadcrum';
 
 function Home() {
   return (
