@@ -1,5 +1,6 @@
 import { BrowserRouter, Routes, Route } from 'react-router';
 import { Box, Divider } from '@mui/material';
+import { useMediaQuery } from 'react-responsive';
 
 import Home from './Pages/Home';
 import Product from './Pages/Product/Product';
@@ -9,9 +10,12 @@ import Sidenav from './components/Sidebar/Sidenav';
 import './App.css';
 import Breadcrum from './components/Breadcrums/Breadcrum';
 import SidebarManager from './Features/POC/SidebarManager';
+import MobileBlocker from './Pages/MobileBlocker';
 
 function App() {
-  return (
+  const isDesktop = useMediaQuery({ minWidth: 769 });
+
+  return isDesktop ? (
     <>
       <Box sx={{ display: 'flex' }}>
         <BrowserRouter>
@@ -42,6 +46,8 @@ function App() {
         </BrowserRouter>
       </Box>
     </>
+  ) : (
+    <MobileBlocker />
   );
 }
 
