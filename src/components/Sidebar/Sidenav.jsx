@@ -33,6 +33,34 @@ import { useNavigate } from 'react-router';
 // Define drawer width
 const drawerWidth = 240;
 
+// Define menu items with sub-items
+const menuItems = [
+  {
+    text: 'Home',
+    path: '/home',
+    subItems: [], // No sub-items for Home
+  },
+  {
+    text: 'Product',
+    path: '/product',
+    subItems: [{ text: 'Add Product', path: '/product/add' }],
+  },
+  {
+    text: 'Supplier',
+    path: '/supplier',
+    subItems: [{ text: 'Add Supplier', path: '/supplier/add' }],
+  },
+  {
+    text: 'Category',
+    path: '/category',
+    subItems: [
+      { text: 'Add Category', path: '/category/add' },
+      { text: 'Edit Category', path: '/category/edit' },
+      { text: 'Delete Category', path: '/category/delete' },
+    ],
+  },
+];
+
 const openedMixin = (theme) => ({
   width: drawerWidth,
   transition: theme.transitions.create('width', {
@@ -357,16 +385,12 @@ export default function Sidenav() {
         </DrawerHeader>
         <Divider />
         <List>
-          {['Home', 'Product', 'Supplier', 'Category'].map((text) => (
+          {menuItems.map(({ text, path, subItems }) => (
             <ListItem
               key={text}
               disablePadding
               sx={{ display: 'block' }}
-              onClick={
-                text == 'Home'
-                  ? () => navigate('/' + text.toLowerCase())
-                  : undefined
-              }
+              onClick={text === 'Home' ? () => navigate(path) : undefined}
             >
               <ListItemButton
                 onClick={() => handleMenuClick(text)}
@@ -385,39 +409,21 @@ export default function Sidenav() {
                 </ListItemIcon>
                 <ListItemText primary={text} />
               </ListItemButton>
-              {text !== 'Home' && subMenuOpen === text && (
+
+              {subItems.length > 0 && subMenuOpen === text && (
                 <List sx={{ pl: 4, pt: 1 }}>
-                  {' '}
-                  {/* Add padding to submenu */}
-                  <ListItem
-                    button
-                    onClick={() => navigate('/' + text.toLowerCase() + '/add')}
-                  >
-                    <ListItemIcon>
-                      <SettingsIcon />
-                    </ListItemIcon>
-                    <ListItemText primary={'Add ' + text} />
-                  </ListItem>
-                  <ListItem
-                    button
-                    onClick={() => navigate('/' + text.toLowerCase() + '/edit')}
-                  >
-                    <ListItemIcon>
-                      <SettingsIcon />
-                    </ListItemIcon>
-                    <ListItemText primary={'Edit ' + text} />
-                  </ListItem>
-                  <ListItem
-                    button
-                    onClick={() =>
-                      navigate('/' + text.toLowerCase() + 'delete')
-                    }
-                  >
-                    <ListItemIcon>
-                      <SettingsIcon />
-                    </ListItemIcon>
-                    <ListItemText primary={'Delete ' + text} />
-                  </ListItem>
+                  {subItems.map((subItem) => (
+                    <ListItem
+                      key={subItem.path}
+                      button
+                      onClick={() => navigate(subItem.path)}
+                    >
+                      <ListItemIcon>
+                        <SettingsIcon />
+                      </ListItemIcon>
+                      <ListItemText primary={subItem.text} />
+                    </ListItem>
+                  ))}
                 </List>
               )}
             </ListItem>
